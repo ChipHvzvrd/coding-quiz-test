@@ -1,60 +1,22 @@
-function codeQuiz(questions, quizContainer, resultsContainer, submitButton){
+const startTime = 10;
+const startBtn = document.getElementById('startBtn');
+const stopBtn = document.getElementById('stopBtn');
+const countdownEl = document.getElementById('countdown');
+let time = startTime * 60;
 
-    function generateQuestion(questions, quizContainer){
-        var output = [];
-        var answers;
-
-        for(var i = 0; i < questions.length; i++){
-            answers = [];
-
-            for(letter in questions[i].answers){
-
-                answers.push(
-                    '<label>'
-                    + '<input type="radio" name="question' + i +'" value="'+ letters +'">'
-                    + letter + ': '
-                    + questions[i].answers[letter]
-                    +'</label>'
-                );
-            }
-
-                output.push(
-                    '<div class="question">' + questions[i].question + '</div>'
-                    + '<div class = "answers">' + answers.join('') + '</div>'
-                );
-        }
-
-        quizContainer.innerHTML = output.join('');
-    }
-
-    function showResults(questions, quizContainer, resultsContainer){
-//
-    }
+function timer() {
+    const minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+    seconds = seconds < 10 ? '0' + seconds : seconds; 
+    countdownEl.innerHTML = `${minutes}: ${seconds}`;
+    time--;
 };
 
 
-var quizQuestions = [
-    {
-        question: "What is 10/2?",
-        answers: {
-            a:'3',
-            b:'5',
-            c:'115'
-        },
-        correctAnswer: 'b'
-    },
-    {
-        question: "What is 30/3?",
-        answers: {
-            a:'3',
-            b:'5',
-            c:'10'
-        },
-        correctAnswer: 'c'
-    }
-];
+function clock() {
+    document.getElementById('startBtn').style.visibility = 'hidden';
+    document.getElementById('stopBtn').style.visibility = 'visible';
+    setInterval(timer, 1000);
+};
 
-
-
-
-
+startBtn.onclick = timer();

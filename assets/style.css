@@ -1,0 +1,10 @@
+body {
+    background: aqua;
+}
+p {
+    color: blue;
+}
+
+#stopBtn {
+    visibility: hidden;
+}
