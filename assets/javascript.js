@@ -4,6 +4,7 @@ const stopBtn = document.getElementById('stopBtn');
 const countdownEl = document.getElementById('countdown');
 let time = startTime * 60;
 
+
 function timer() {
     const minutes = Math.floor(time / 60);
     let seconds = time % 60;
@@ -12,11 +13,12 @@ function timer() {
     time--;
 };
 
-
-function clock() {
+startBtn.addEventListener("click", () => {
     document.getElementById('startBtn').style.visibility = 'hidden';
     document.getElementById('stopBtn').style.visibility = 'visible';
-    setInterval(timer, 1000);
-};
+    myInterval = setInterval(timer, 1000);
+});
 
-startBtn.onclick = timer();
+stopBtn.addEventListener("click", () => {
+    clearInterval(myInterval);   
+});
