@@ -15,7 +15,6 @@ function timer() {
 
 startBtn.addEventListener("click", () => {
     document.getElementById('startBtn').style.visibility = 'hidden';
-    document.getElementById('stopBtn').style.visibility = 'visible';
     myInterval = setInterval(timer, 1000);
 });
 
@@ -34,6 +33,10 @@ const answerBtnEl = document.getElementById("answer-button");
 let shuffledQuestions, currentQuestionIndex
 
 startBtn.addEventListener("click", startQuiz);
+nxtBtn.addEventListener("click", () => {
+    currentQuestionIndex++;
+    nextQuestion(); 
+})
 
 function startQuiz () {
     startBtnQuiz.classList.add("hide");
@@ -63,6 +66,7 @@ function showQuestion(question) {
 }
 
 function resetState() {
+    clearStatusClass(document.body);
     nxtBtn.classList.add("hide");
     while (answerBtnEl.firstChild) {
         answerBtnEl.removeChild(answerBtnEl.firstChild);
@@ -76,6 +80,16 @@ function selectAnswer (e) {
      Array.from(answerBtnEl.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
      });
+     if (shuffledQuestions.length > currentQuestionIndex + 1) {
+        nxtBtn.classList.remove('hide');
+     }else {
+        startBtn.innerText = "Restart";
+        startBtn.style.visibility = "visible";
+        stopBtn.style.visibility = "visible";
+        startBtn.onclick = function() {
+            document.location.reload();
+        }
+     }
 }
 
 function setStatusClass(element, correct) {
@@ -95,14 +109,132 @@ function clearStatusClass(element) {
 
 const questions = [
     {
-        question: "What is 2 + 2?",
+        question: "What is the server side language of JavaScript called?",
         answers: [
             {
-                text: "4", correct: true
+                text: "Python", correct: false
             },
             {
-                text: "22", correct: false
-            }
+                text: "Node.js", correct: true
+            },
+            {
+                text: "HTML 5", correct: false
+            },
+            {
+                text: "C++", correct: false
+            },            
         ]
-    }
+    },
+    {
+        question: "What is JavaScripts techinical name?",
+        answers: [
+            {
+                text: "TypeScript", correct: false
+            },
+            {
+                text: "Java", correct: false
+            },
+            {
+                text: "EcmaScript", correct: true
+            },
+            {
+                text: "coffeeScript", correct: false
+            },            
+        ]
+    },
+    {
+        question: "Who invented JavaScript?",
+        answers: [
+            {
+                text: "Brendan Eich", correct: true
+            },
+            {
+                text: "Gavin Wood", correct: false
+            },
+            {
+                text: "James Gosling", correct: false
+            },
+            {
+                text: "Robert Gentleman", correct: false
+            },            
+        ]
+    },
+    {
+        question: "What is the naming convention for the JavaScript file extension?",
+        answers: [
+            {
+                text: ".js", correct: true
+            },
+            {
+                text: ".css", correct: false
+            },
+            {
+                text: ".html", correct: false
+            },
+            {
+                text: ".py", correct: false
+            },            
+        ]
+    },
+    {
+        question: "What is a tool to clean up JavaScript code?",
+        answers: [
+            {
+                text: "ESLint", correct: true
+            },
+            {
+                text: "CleanMon", correct: false
+            },
+            {
+                text: "Linty", correct: false
+            },
+            {
+                text: "Broom", correct: false
+            },            
+        ]
+    },
+    {
+        question: "How long did it take to develop JavaScript?",
+        answers: [
+            {
+                text: "1 year", correct: false
+            },      
+            {
+                text: "5 years", correct: false
+            },
+            {
+                text: "10 days", correct: true
+            },
+            {
+                text: "3 months", correct: false
+            },            
+        ]
+    },
 ]
+
+const userScore = document.getElementById("highScore");
+const leaderBoard = document.getElementById("leaderboard");
+const saveBtn = document.getElementById("save-score");
+
+stopBtn.addEventListener("click", storeScore);
+saveBtn.addEventListener("click", saveScore);
+leaderBoard.addEventListener("load", saveScore);
+
+function saveScore() {
+const newScore = document.createElement("li");
+const quizScore = localStorage.getItem(`score`);
+let newScoreString = JSON.stringify(quizScore);
+newScore.innerHTML = newScoreString;
+leaderBoard.appendChild(newScore);
+}
+
+function storeScore() {
+let time_serial = JSON.stringify(time);
+localStorage.setItem(`score`, time_serial);
+document.getElementById("highScore").innerHTML = JSON.parse(localStorage.getItem(`score`)) + "/180";
+saveBtn.style.visibility = "visible";
+}
+
+function scores() {
+    
+}

@@ -94,3 +94,19 @@ body.wrong {
 .hide {
     display: none;
 }
+
+#stopBtn {
+    visibility: hidden;
+}
+
+#start-btn {
+    visibility: hidden;
+}
+
+#title {
+    text-align: center;
+}
+
+#save-score {
+    visibility: hidden;
+}
