@@ -12,25 +12,29 @@
         <div class="row">
             <div class="col">
                 <p id="countdown"></p>
-                    <button id="startBtn">Start Quiz</button>
-                    <button id="stopBtn">Stop Quiz</button>
+                    <button class="btn" id="startBtn">Start Quiz</button>
+                    <button class="btn" id="stopBtn">Stop Quiz</button>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container" id="quiz-con">
         <div class="row">
-            <div class="col">
-                <h2 class="questions" id="question-column"></h2>
-                    <ul class="answers" id="answer-column">
-                        <!-- <li class="choices"></li> -->
-                    </ul>
+            <div class="hide" id="question-container">
+                <div id="question">Question</div>
+                <div id="answer-button" class="btn-grid">
+                    <button class="btn">Answer 1</button>
+                    <button class="btn">Answer 2</button>
+                    <button class="btn">Answer 3</button>
+                    <button class="btn">Answer 4</button>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="start-btn" class="start-btn btn">Quiz</button>
+                <button id="next-btn" class="next-btn btn hide">Next</button>
             </div>
         </div>
     </div>
-    <div id="quiz"></div>
-    <button id="submit">Submit</button>
-    <div id="results"></div>
-    <script type="text/javascript" src="./assets/javascript.js" ></script>  
-    <script src="./assets/questions.js"></script>   
+    <script type="text/javascript" src="./assets/timer.js" ></script>  
+    <script defer src="./assets/questions.js"></script>   
     </body>
 </html>

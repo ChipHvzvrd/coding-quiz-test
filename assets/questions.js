@@ -1,13 +1,30 @@
-var questionEl = document.getElementById("question-column");
-var answerEl = document.querySelector("#answer-column");
+const startBtnQuiz = document.getElementById("start-btn");
+const questionConEl = document.getElementById("question-container");
 
 
-var questionOne = function() {
-    var choiceEl = document.createElement("li");
-    questionEl.innerHTML = "What programming language do we use?";
-    choiceEl.className = "choice";
-    choiceEl.textContent = "Javascript";
-    answerEl.appendChild(choiceEl);
+startBtn.addEventListener("click", startQuiz);
+
+function startQuiz () {
+    console.log("working");
+    startBtnQuiz.classList.add("hide");
+    questionConEl.classList.remove("hide");
+    nextQuestion();
 }
 
-startBtn.addEventListener("click", questionOne);
+function nextQuestion () {}
+
+function selectAnswer () {}
+
+const questions = [
+    {
+        question: "What is 2 + 2?",
+        answer: [
+            {
+                text: "4", correct: true
+            },
+            {
+                text: "22", correct: false
+            }
+        ]
+    }
+]
